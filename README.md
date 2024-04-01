@@ -26,5 +26,3 @@ Alguns dos tópicos abordados na disciplina incluem:
 
 - Professor Paulo Reis
 - Alunos do curso de BSI da UNIME
-
-Este repositório é um espaço colaborativo onde os alunos podem compartilhar e colaborar em suas soluções para as atividades propostas durante a disciplina. Se você é um aluno da UNIME e deseja contribuir com suas soluções ou tem alguma dúvida, sinta-se à vontade para entrar em contato ou enviar suas contribuições através de pull requests.
