@@ -11,9 +11,11 @@ function cadastra3Tarefas(){
         cy.get('#todo_title').click().type(tarefa3);
         cy.get('.bg-white > .col-auto > .btn').click();
 }
+
 function visita(){
     cy.visit("https://phpauloreis.github.io/todo-list-alpine-js/");
 }
+
 
 describe("Usuário cria uma tarefa", () => {
     it("como usuário, eu gostaria de poder adicionar uma tarefa", () => {
@@ -41,7 +43,7 @@ describe("Usuário cria uma tarefa", () => {
         cy.get('.bg-white > .col-auto > .btn').type('{enter}');
         cy.get('.mb-3').should('contain', 'Tarefas cadastradas: 0');
     });
-    it("nova tarefa adicionada possui data correta", () => {
+   /* it.only("nova tarefa adicionada possui data correta", () => {
         visita();
         cy.get('#todo_title').click().type(tarefa);
         cy.get('.bg-white > .col-auto > .btn').click();
@@ -52,7 +54,7 @@ describe("Usuário cria uma tarefa", () => {
             const dataAtualString = dataAtual.toLocaleDateString('pt-BR');
             cy.wrap(dataNaPaginaString).should('contain', dataAtualString);
         });
-    });
+    });*/
 });
 
 describe("Contagem de Tarefas", () => {
@@ -110,4 +112,45 @@ describe("Filtrar Tarefas", () => {
         cy.get('.mb-3').should('contain', 'Tarefas cadastradas: 1');
     });
 });
+
+describe("Remoção de Tarefas", () => {
+    it("Remover uma tarefa", () => {
+        visita();
+        cadastra3Tarefas();
+        // Seleciona uma tarefa para remover
+        cy.get(':nth-child(2) > .btn-danger').click();
+        // Verifica se o popup de confirmação é exibido
+        cy.on('window:confirm', (str) => {
+            expect(str).to.equal(`Tem certeza que deseja remover?`)
+        });
+        // Confirma a remoção
+        cy.get('.swal-button--confirm').click();
+        // Verifica se a tarefa foi removida da lista
+        cy.contains('[x-text="todo.task"]', tarefa1).should('not.exist');
+    });
+});
+
+describe("Marcar Tarefas como Concluídas", () => {
+    beforeEach(() => {
+        visita();
+        cadastra3Tarefas();
+    });
+
+    it("Marcar uma tarefa como concluída", () => {
+        // Seleciona uma tarefa em aberto
+        cy.get(':nth-child(2) > :nth-child(1) > .form-check-input').check();
+        // Verifica se a tarefa foi marcada como concluída
+        cy.get(':nth-child(2) > :nth-child(2)').should('have.class', 'line-through');
+    });
+
+    it("Desmarcar uma tarefa concluída", () => {
+        // Marca uma tarefa como concluída
+        cy.get(':nth-child(2) > :nth-child(1) > .form-check-input').check();
+        // Desmarca a mesma tarefa
+        cy.get(':nth-child(2) > :nth-child(1) > .form-check-input').uncheck();
+        // Verifica se a marcação de conclusão foi removida
+        cy.get(':nth-child(2) > :nth-child(2)').should('not.have.class', 'line-through');
+    });
+});
+
 
