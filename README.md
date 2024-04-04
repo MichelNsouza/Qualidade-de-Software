@@ -20,7 +20,7 @@ Alguns dos tópicos abordados na disciplina incluem:
 
 - [Atividade Cenários BDD em grupo](https://docs.google.com/document/d/11bCS_RZlNgRQNVEbaKnyzbB8ZiJBFWKn70ZCuq1q8xg/edit?usp=sharing)
 - [Atividade Cenários BDD individual](https://docs.google.com/document/d/1pykU5p3hAvZY1WljsOnt5Mhydk0YdK_k_xnd7cFMNwM/edit?usp=sharing)
-- [Aplicação individual de BDD com Cypress](https://github.com/MichelNsouza/Qualidade_de_Software_UNIME/tree/main/atividade_3)
+- [Aplicação individual de BDD com Cypress](https://github.com/MichelNsouza/Qualidade_de_Software_UNIME/blob/main/Atividade3/cypress/e2e/atividade3GQS.cy.js)
 
 ## Contribuidores
 
